@@ -8,7 +8,10 @@ public class Managers : MonoBehaviour
     static Managers Instance { get { Init(); return s_Instance; } } // 유일한 매니저를 갖고온다.
 
     InputManager _input = new InputManager();
+    ResourcesManager _resource = new ResourcesManager();
+
     public static InputManager Input { get { return Instance._input; } }
+    public static ResourcesManager Resources { get { return Instance._resource; } }
 
     void Start()
     {
