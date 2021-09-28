@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class InputManager
 {
@@ -12,6 +13,10 @@ public class InputManager
 
     public void OnUpdate()
     {
+        // UI 클릭 시 바로 리턴 (플레이어 이동 X)
+        if (EventSystem.current.IsPointerOverGameObject())
+            return;
+
         if (Input.anyKey && KeyAction != null)
             KeyAction.Invoke();
 
