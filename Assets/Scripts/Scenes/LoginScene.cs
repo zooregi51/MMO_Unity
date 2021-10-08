@@ -16,12 +16,12 @@ public class LoginScene : BaseScene
     {
         if (Input.GetKeyDown(KeyCode.Q))
         {
-            SceneManager.LoadScene("Game");
+            Managers.Scene.LoadScene(Define.Scene.Game);
         }
     }
 
     public override void Clear()
     {
-
+        Debug.Log("LoginScene Clear!");
     }
 }
