@@ -51,8 +51,6 @@ public class PlayerController : MonoBehaviour
         Managers.Input.MouseAction -= OnMousedClicked;
         Managers.Input.MouseAction += OnMousedClicked;
 
-        Managers.UI.ShowSceneUI<UI_Inven>();
-
         //MyVector to = new MyVector(10.0f, 0.0f, 0.0f);
         //MyVector from = new MyVector(5.0f, 0.0f, 0.0f);
         //MyVector dir = to - from; // (5.0f, 0.0f, 0.0f)
