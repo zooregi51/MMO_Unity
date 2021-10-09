@@ -39,6 +39,7 @@ public class SoundManager
             audioSource.clip = null;
             audioSource.Stop();
         }    
+
         _auidoClips.Clear();
     }
 

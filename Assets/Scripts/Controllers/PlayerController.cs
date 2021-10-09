@@ -73,7 +73,7 @@ public class PlayerController : MonoBehaviour
 
     // float wait_run_ratio = 0.0f;
 
-    // 단점 : 동시에 2가지를 못함    
+    // 스테이트 단점 : 동시에 2가지를 못함    
     public enum PlayerState
     {
         Die,
@@ -91,10 +91,9 @@ public class PlayerController : MonoBehaviour
     void UpdateMoving()
     {              
         Vector3 dir = _destPos - transform.position;
-        if (dir.magnitude < 0.0001f)
-        {            
+        if (dir.magnitude < 0.0001f)                    
             _state = PlayerState.Idle;
-        }
+        
         else
         {
             float moveDist = Mathf.Clamp(_speed * Time.deltaTime, 0, dir.magnitude);
@@ -104,6 +103,7 @@ public class PlayerController : MonoBehaviour
 
         // 애니메이션 
         Animator anim = GetComponent<Animator>();
+
         //현재 게임 상태에 대한 정보를 넘겨준다.
         anim.SetFloat("speed", _speed);
 
