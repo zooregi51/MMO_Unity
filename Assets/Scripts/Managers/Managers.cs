@@ -7,6 +7,7 @@ public class Managers : MonoBehaviour
     static Managers s_Instance; // 유일성이 보장된다
     static Managers Instance { get { Init(); return s_Instance; } } // 유일한 매니저를 갖고온다.
 
+    DataManager _data = new DataManager();
     InputManager _input = new InputManager();
     PoolManager _pool = new PoolManager();
     ResourcesManager _resource = new ResourcesManager();
@@ -14,6 +15,7 @@ public class Managers : MonoBehaviour
     SoundManager _sound = new SoundManager();
     UIManager _ui = new UIManager();
 
+    public static DataManager Data { get { return Instance._data; } }
     public static InputManager Input { get { return Instance._input; } }
     public static PoolManager Pool { get { return Instance._pool; } }
     public static ResourcesManager Resources { get { return Instance._resource; } }
@@ -45,6 +47,7 @@ public class Managers : MonoBehaviour
             DontDestroyOnLoad(go);
             s_Instance = go.GetComponent<Managers>();
 
+            s_Instance._data.Init();
             s_Instance._pool.Init();
             s_Instance._sound.Init();
         }      
@@ -56,7 +59,6 @@ public class Managers : MonoBehaviour
         Input.Clear();
         Scene.Clear();
         UI.Clear();
-
         Pool.Init();
     }
 }

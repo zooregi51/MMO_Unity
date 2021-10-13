@@ -18,9 +18,10 @@ public class GameScene : BaseScene
         SceneType = Define.Scene.Game;
 
         Managers.UI.ShowSceneUI<UI_Inven>();
+        Dictionary<int, Stat> dict = Managers.Data.StatDic;
 
-        co = StartCoroutine("CoExplpodeAfterSeconds", 4.0f);
-        StartCoroutine("CoStopExplode", 2.0f);
+        //co = StartCoroutine("CoExplpodeAfterSeconds", 4.0f);
+        //StartCoroutine("CoStopExplode", 2.0f);
     }
 
     IEnumerator CoStopExplode(float seconds)
