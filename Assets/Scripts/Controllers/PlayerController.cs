@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 // 1. 위치 벡터
 // 2. 방향 벡터 (어떤 방향을 나타내기도 하고, 크기도 나타냄)
@@ -91,13 +92,25 @@ public class PlayerController : MonoBehaviour
     void UpdateMoving()
     {              
         Vector3 dir = _destPos - transform.position;
-        if (dir.magnitude < 0.0001f)                    
+        if (dir.magnitude < 0.1f)                    
             _state = PlayerState.Idle;
         
         else
         {
+            // TODO
+            NavMeshAgent nma = gameObject.GetOrAddComponent<NavMeshAgent>();
+
             float moveDist = Mathf.Clamp(_speed * Time.deltaTime, 0, dir.magnitude);
-            transform.position += dir.normalized * moveDist;
+            nma.Move(dir.normalized * moveDist);
+
+            Debug.DrawRay(transform.position + Vector3.up * 0.5f, dir.normalized, Color.green);
+            if (Physics.Raycast(transform.position + Vector3.up * 0.5f, dir, 1.0f, LayerMask.GetMask("Block")))
+            {
+                _state = PlayerState.Idle;
+                return;
+            }
+
+            //transform.position += dir.normalized * moveDist;
             transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(dir), 10 * Time.deltaTime);
         }
 
@@ -194,7 +207,7 @@ public class PlayerController : MonoBehaviour
             return;
 
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        Debug.DrawRay(Camera.main.transform.position, ray.direction * 100.0f, Color.red, 1.0f);
+        //Debug.DrawRay(Camera.main.transform.position, ray.direction * 100.0f, Color.red, 1.0f);
 
         RaycastHit hit;
         if (Physics.Raycast(ray, out hit, 100.0f, LayerMask.GetMask("Wall")))
