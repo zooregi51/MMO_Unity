@@ -20,6 +20,7 @@ public class GameScene : BaseScene
         Managers.UI.ShowSceneUI<UI_Inven>();
         Dictionary<int, Data.Stat> dict = Managers.Data.StatDic;
 
+        gameObject.GetOrAddComponent<CursorController>();
         //co = StartCoroutine("CoExplpodeAfterSeconds", 4.0f);
         //StartCoroutine("CoStopExplode", 2.0f);
     }
