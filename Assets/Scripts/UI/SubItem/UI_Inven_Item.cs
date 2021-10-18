@@ -12,12 +12,7 @@ public class UI_Inven_Item : UI_Base
         ItemNameText,
     }
 
-    string _name = null;
-
-    void Start()
-    {
-        Init();
-    }
+    string _name = null;  
 
     public override void Init()
     {

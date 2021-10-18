@@ -28,12 +28,6 @@ public class UI_Button : UI_Popup
         ItemIcon,
     }
 
-    // 리플렉션을 이용
-    private void Start()
-    {
-        Init();
-    }
-
     public override void Init()
     {
         base.Init();

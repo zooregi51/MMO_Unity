@@ -92,6 +92,8 @@ public class PlayerController : MonoBehaviour
         Managers.Input.MouseAction -= OnMousedEvent;
         Managers.Input.MouseAction += OnMousedEvent;
 
+        Managers.UI.MakeWorldSpaceUI<UI_HPBar>(transform);
+
         //MyVector to = new MyVector(10.0f, 0.0f, 0.0f);
         //MyVector from = new MyVector(5.0f, 0.0f, 0.0f);
         //MyVector dir = to - from; // (5.0f, 0.0f, 0.0f)
@@ -103,7 +105,7 @@ public class PlayerController : MonoBehaviour
         // 방향 벡터
         // 1. 거리(크기) magnitude    5   
         // 2. 실제 방향  normalized    -> 우측으로 
-    }   
+    }       
 
     void UpdateDie()
     {
@@ -179,6 +181,16 @@ public class PlayerController : MonoBehaviour
     void OnHitEvent()
     {        
         Debug.Log("OnHitEvent");
+
+        if (_lockTarget != null)
+        {
+            //TODO
+            Stat targetStat = _lockTarget.GetComponent<Stat>();
+            PlayerStat myStat = gameObject.GetComponent<PlayerStat>();
+            int damage = Mathf.Max(0, myStat.Attack - targetStat.Defense);
+            Debug.Log(damage);
+            targetStat.Hp -= damage;
+        }
 
         //TODO
         if (_stopSkill)
