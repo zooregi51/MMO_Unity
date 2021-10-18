@@ -21,6 +21,10 @@ public class GameScene : BaseScene
         Dictionary<int, Data.Stat> dict = Managers.Data.StatDic;
 
         gameObject.GetOrAddComponent<CursorController>();
+
+        GameObject player = Managers.Game.Spawn(Define.WorldObject.Player, "UnityChan");
+        Camera.main.gameObject.GetOrAddComponent<CameraController>().SetPlayer(player);
+        Managers.Game.Spawn(Define.WorldObject.Monster, "Knight");
         //co = StartCoroutine("CoExplpodeAfterSeconds", 4.0f);
         //StartCoroutine("CoStopExplode", 2.0f);
     }

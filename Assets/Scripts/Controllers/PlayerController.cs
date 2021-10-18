@@ -48,6 +48,7 @@ public class PlayerController : BaseController
 
     public override void Init()
     {
+        WorldObjectType = Define.WorldObject.Player;
         _stat = gameObject.GetComponent<PlayerStat>();
 
         // 혹시라도 다른 곳에서 바인딩하면 해지하고 다시 신청        
