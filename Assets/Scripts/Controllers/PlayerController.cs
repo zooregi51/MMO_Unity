@@ -87,6 +87,7 @@ public class PlayerController : BaseController
 
         // 이동
         Vector3 dir = _destPos - transform.position;
+        dir.y = 0;
         if (dir.magnitude < 0.1f)                    
             State = Define.State.Idle;
         
@@ -121,15 +122,11 @@ public class PlayerController : BaseController
         Debug.Log("OnHitEvent");
 
         if (_lockTarget != null)
-        {
-            //TODO
+        {            
             Stat targetStat = _lockTarget.GetComponent<Stat>();
-            PlayerStat myStat = gameObject.GetComponent<PlayerStat>();
-            int damage = Mathf.Max(0, myStat.Attack - targetStat.Defense);
-            targetStat.Hp -= damage;
+            targetStat.OnAttacked(_stat);
         }
 
-        //TODO
         if (_stopSkill)
         {
             State = Define.State.Idle;
